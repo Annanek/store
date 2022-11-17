@@ -8,5 +8,5 @@ const PATH = '/';
 const HOST = 'localhost';
 const USER = 'root';
 const PASS = 'root';
-const DB_NAME = 'learn_online_store';
+const DB_NAME = 'learn_store';
 

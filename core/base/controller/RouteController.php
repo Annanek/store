@@ -45,7 +45,8 @@ class RouteController extends BaseController
                 //$url = explode('/', substr($address_str, strlen(PATH . $this->routes['admin']['alias']) + 1 ));
                 array_shift($url);
 
-                if ($url[0] && is_dir($_SERVER['DOCUMENT_ROOT'] . PATH . $this->routes['plugins']['path'] . $url[0])) {
+                // todo: check - !empty
+                if (!empty($url[0]) && is_dir($_SERVER['DOCUMENT_ROOT'] . PATH . $this->routes['plugins']['path'] . $url[0])) {
                     /* если существует что-то после /admin и  есть директория плагина. (Проверка, работаем ли с плагином) */
                     $plugin = array_shift($url);
 
