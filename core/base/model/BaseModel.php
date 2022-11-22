@@ -256,7 +256,8 @@ class BaseModel extends BaseModelMethods
         $columns = $this->showColumns($table);
         if(!$columns) return false;
 
-        if (is_array($set['fields']) && !empty($set['fields'])) {
+        //todo: if (is_array($set['fields']) && !empty($set['fields'])) {
+        if (!empty($set['fields']) && is_array($set['fields'])) {
 
             if ($columns['id_row']) {
                 $key = array_search($columns['id_row'], $set['fields']);

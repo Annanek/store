@@ -9,7 +9,8 @@ abstract class BaseModelMethods
 
     protected function createFields($set, $table = false) {
 
-        $set['fields'] = (is_array($set['fields']) && !empty($set['fields'])) ? $set['fields'] : ['*'];
+        //todo: $set['fields'] = (is_array($set['fields']) && !empty($set['fields'])) ? $set['fields'] : ['*'];
+        $set['fields'] = (!empty($set['fields']) && is_array($set['fields'])) ? $set['fields'] : ['*'];
 
         $table = $table ? $table . '.' : '';
 
@@ -65,7 +66,8 @@ abstract class BaseModelMethods
 
         $where = '';
 
-        if (is_array($set['where']) && !empty($set['where'])) {
+        //todo: if (is_array($set['where']) && !empty($set['where'])) {
+        if (!empty($set['where']) && is_array($set['where'])) {
 
             //todo: $set['operand'] = (is_array($set['operand']) && !empty($set['operand'])) ? $set['operand'] : ['='];
             $set['operand'] = (!empty($set['operand']) && is_array($set['operand'])) ? $set['operand'] : ['='];
@@ -188,12 +190,14 @@ abstract class BaseModelMethods
                             break;
                     }
 
-                    if (!$item['type']) $join .= 'LEFT JOIN ';
+                    //todo: if (!$item['type']) $join .= 'LEFT JOIN ';
+                    if (empty($item['type'])) $join .= 'LEFT JOIN ';
                     else $join .= trim(strtoupper($item['type'])) . ' JOIN ';
 
                     $join .= $key . ' ON ';
 
-                    if ($item['on']['table']) $join .= $item['on']['table'];
+                    //todo: if ($item['on']['table']) $join .= $item['on']['table'];
+                    if (!empty($item['on']['table'])) $join .= $item['on']['table'];
                     else $join .= $join_table;
 
 
@@ -213,7 +217,8 @@ abstract class BaseModelMethods
 
                     } else {
 
-                        $group_condition = $item['group_condition'] ? strtoupper($item['group_condition']) : 'AND';
+                        //todo: $group_condition = $item['group_condition'] ? strtoupper($item['group_condition']) : 'AND';
+                        $group_condition = !empty($item['group_condition']) ? strtoupper($item['group_condition']) : 'AND';
                     }
 
                     $fields .= $this->createFields($item, $key);
