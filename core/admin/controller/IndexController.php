@@ -14,13 +14,25 @@ class IndexController extends BaseController
 
         $table = 'teachers';
 
-        $files['gallery_img'] = ["red''.jpg", 'blue.jpg', 'black.jpg'];
-        $files['img'] = 'main_img.jpg';
+//        for($i = 0; $i < 8; $i++) {
+//            $s_id = $db->add('students', [
+//                'fields' => ['name' =>'student - ' . $i, 'content' => 'content - ' . $i],
+//                'return_id' => true
+//            ]);
+//
+//            $db->add('teachers', [
+//                'fields' => ['name' =>'teacher - ' . $i, 'content' => 'content - ' . $i, 'student_id' => $s_id],
+//                'return_id' => true
+//            ]);
+//        }
 
-        $res = $db->add($table, [
-            'fields' => ['name' => 'Katya', 'content' => 'Hello'],
-            'except' => ['name'],
-            'files' => $files
+        $res = $db->delete($table, [
+            'where' => ['id' => 18],
+            'join' => [
+                [   'table' => 'students',
+                    'on' => ['student_id', 'id']
+                ]
+            ]
         ]);
 
         exit('id =' . $res['id'] . ' Name = ' . $res['name']);
