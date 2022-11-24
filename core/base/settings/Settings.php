@@ -46,8 +46,11 @@ class Settings
         'textarea' => ['content', 'keywords']
     ];
 
+    private $expansion = 'core/admin/expansion/';
+
     static public function get($property)
     {
+
         return self::instance()->$property;
     }
 

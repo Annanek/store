@@ -40,7 +40,8 @@ abstract class BaseModelMethods
             $direct_count = 0;
 
             foreach ($set['order'] as $order) {
-                if($set['order_direction'][$direct_count]) {
+                //todo: if($set['order_direction'][$direct_count]) {
+                if(!empty($set['order_direction'][$direct_count])) {
                     $order_direction = strtoupper($set['order_direction'][$direct_count]);
                     $direct_count++;
                 } else {
