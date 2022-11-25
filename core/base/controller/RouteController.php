@@ -17,17 +17,19 @@ class RouteController extends BaseController
 
         $address_str = $_SERVER['REQUEST_URI'];
 
-        if (strrpos($address_str, '/') === strlen($address_str) - 1 && strrpos($address_str, '/') !== 0) {
-            /* 12 урок - эта строчка точно правильная*/
-            /* если в конце слеш и он - не единственный символ */
-            $this->redirect(rtrim($address_str, '/'), 301);
-            /* rtrim - обрежет слеш в конце */
-        }
-
         // ? delete ? $a = strpos($_SERVER['PHP_SELF'], 'index.php');
         $path = substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], 'index.php'));
 
         if ($path === PATH) {
+
+            if (strrpos($address_str, '/') === strlen($address_str) - 1 &&
+                strrpos($address_str, '/') !== strlen(PATH) - 1) {
+                /* 12 урок - эта строчка точно правильная*/
+                /* если в конце слеш и он - не единственный символ */
+                $this->redirect(rtrim($address_str, '/'), 301);
+                /* rtrim - обрежет слеш в конце */
+            }
+
             /* ? Проверка, что базовые настройки правильные (адрес скрипта совпадает с корнем) */
             $this->routes = Settings::get('routes');
 
