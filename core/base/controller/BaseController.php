@@ -26,6 +26,8 @@ abstract class BaseController
     protected $styles;
     protected $scripts;
 
+    protected $userId;
+
     public function route()
     {
         $controller = str_replace('/', '\\', $this->controller);
@@ -103,7 +105,8 @@ abstract class BaseController
         }else{
             echo $this->page;
         }
-        exit();
+        //todo:???
+        //exit();
     }
 
     protected function init($admin = false) {
