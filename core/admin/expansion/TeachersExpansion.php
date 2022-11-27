@@ -10,7 +10,7 @@ class TeachersExpansion
 
     public function expansion($args = []) {
 
-        $this->title = 'Some title';
+        //$this->title = 'Some title';
 
     }
 
