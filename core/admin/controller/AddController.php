@@ -13,6 +13,8 @@ class AddController extends BaseAdmin
 
         $this->createOutputData();
 
+        $this->model->showForeignKeys($this->table);
+
     }
 
 }

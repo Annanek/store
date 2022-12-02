@@ -166,7 +166,8 @@ abstract class BaseAdmin extends BaseController
             }
 
             if(!$insert) $this->blocks[$default][] = $name;
-            if(!$this->translate[$name]) $this->translate[$name][] = $name;
+            //todo: if(!$this->translate[$name]) $this->translate[$name][] = $name;
+            if(empty($this->translate[$name])) $this->translate[$name][] = $name;
         }
 
         return;
