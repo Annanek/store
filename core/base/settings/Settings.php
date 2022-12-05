@@ -57,6 +57,10 @@ class Settings
         'content' => []
     ];
 
+    private $radio = [
+        'visible' => ['Нет', 'Да', 'default' => 'Да']
+    ];
+
     private $rootItems = [
         'name' => 'Корневая',
         'tables' => ['articles']
