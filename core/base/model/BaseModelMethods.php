@@ -12,7 +12,8 @@ abstract class BaseModelMethods
         //todo: $set['fields'] = (is_array($set['fields']) && !empty($set['fields'])) ? $set['fields'] : ['*'];
         $set['fields'] = (!empty($set['fields']) && is_array($set['fields'])) ? $set['fields'] : ['*'];
 
-        $table = $table ? $table . '.' : '';
+        //todo: $table = ($table && !$set['no_concat']) ? $table . '.' : '';
+        $table = ($table && empty($set['no_concat'])) ? $table . '.' : '';
 
         $fields = '';
 
@@ -26,7 +27,8 @@ abstract class BaseModelMethods
 
     protected function createOrder($set, $table = false) {
 
-        $table = $table ? $table . '.' : '';
+        //todo: !$set['no_concat'])
+        $table = ($table && empty($set['no_concat'])) ? $table . '.' : '';
 
         $order_by = '';
 
@@ -63,9 +65,14 @@ abstract class BaseModelMethods
 
     protected function createWhere($set, $table = false, $instruction = 'WHERE') {
 
-        $table = $table ? $table . '.' : '';
+        //todo: !$set['no_concat'])
+        $table = ($table && empty($set['no_concat'])) ? $table . '.' : '';
 
         $where = '';
+
+        if(is_string($set['where'])) {
+            return $instruction . ' ' . trim($set['where']);
+        }
 
         //todo: if (is_array($set['where']) && !empty($set['where'])) {
         if (!empty($set['where']) && is_array($set['where'])) {
